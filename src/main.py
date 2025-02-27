@@ -7,7 +7,7 @@ def browse():
     file_path = askopenfilename(
         initialdir='/',
         title="Select File",
-        filetypes=(('Image Files', '*.jpg'), ('Image Files', '*.jpeg'), ('All Files', '*.*'))
+        filetypes=[('Image Files', '*.jpeg *.jpg *.png')]
     )
     file_explorer.configure(text="File Opened: "+file_path)
 
