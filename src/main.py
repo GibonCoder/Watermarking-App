@@ -3,14 +3,11 @@ from tkinter import ttk
 from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 
-
-def browse():
-    file_path = askopenfilename(
-        initialdir='/',
-        title="Select File",
-        filetypes=[('Image Files', '*.jpeg *.jpg *.png')]
-    )
-    file_explorer.configure(text="File Opened: "+file_path)
+# TODO: Write functionality for displaying selected image
+# TODO: Write functionality to select the way how to watermark image
+# TODO: Write functionality to add watermark
+# TODO: Write functionality to display watermarked image
+# TODO: Write functionality to download watermarked image
 
 
 # Window initialisation and setup
