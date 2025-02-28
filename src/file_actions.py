@@ -1,4 +1,5 @@
 from tkinter.filedialog import askopenfilename
+from PIL import Image, ImageTk
 
 
 def browse_files(label):
@@ -9,3 +10,9 @@ def browse_files(label):
     )
     if not len(file_path) == 0:
         label.configure(text=f"File Opened: {file_path}")
+
+
+def display_image(path, label):
+    img = Image.open(path)
+    photo = ImageTk.PhotoImage(img)
+    label.configure(image=photo)
