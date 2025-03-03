@@ -52,6 +52,7 @@ exit_btn.pack()
 browse_files_btn.pack()
 label1.pack()
 radio_btn2.pack()
+browse_watermarks_btn.pack()
 radio_btn1.pack()
 watermark_txt.pack()
 
