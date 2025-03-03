@@ -16,6 +16,8 @@ def browse_files(exp_lbl, canvas, container):
 def display_image(path, canvas, container):
     img = Image.open(path)
     photo = ImageTk.PhotoImage(img)
-    canvas.create_image(10, 10, image=photo)
+    photo_width = photo.width()
+    photo_height = photo.height()
+    canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
     container.clear()
     container.append(photo)
