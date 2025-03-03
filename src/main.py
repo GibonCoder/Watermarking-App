@@ -38,8 +38,8 @@ file_explorer = ttk.Label(root, text="Explore files (For the best experience, us
 label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 # Buttons
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
-browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(canvas=canvas, container=img_container, label=file_explorer))
-
+browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(img_container, canvas=canvas, label=file_explorer))
+browse_watermarks_btn = ttk.Button(root, text="Browse watermarks", command=lambda: browse_files(watermark_container))
 # Radio Buttons
 radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
 radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
@@ -49,7 +49,7 @@ watermark_txt = ttk.Entry(root, textvariable=input_text, state='disabled')
 # Setting up elements on grid
 file_explorer.pack()
 exit_btn.pack()
-browse_btn.pack()
+browse_files_btn.pack()
 label1.pack()
 radio_btn2.pack()
 radio_btn1.pack()
