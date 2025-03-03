@@ -31,13 +31,15 @@ def choose_option():
 # TODO: Write functionality to download watermarked image
 
 img_container = []  # List to hold image references
+watermark_container = []  # List to hold watermark reference
 # Elements Initialisation
 # Labels
 file_explorer = ttk.Label(root, text="Explore files (For the best experience, use files with maximal resolution 600x600)")
 label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 # Buttons
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
-browse_btn = ttk.Button(root, text="Browse Folder", command=lambda: browse_files(file_explorer, canvas, img_container))
+browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(canvas=canvas, container=img_container, label=file_explorer))
+
 # Radio Buttons
 radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
 radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
