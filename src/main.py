@@ -3,18 +3,32 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from file_actions import browse_files
 
-# TODO: Write functionality for displaying selected image [Finished]
-# TODO: Write functionality to select the way how to watermark image
-# TODO: Write functionality to add watermark
-# TODO: Write functionality to display watermarked image
-# TODO: Write functionality to download watermarked image
-
-
 # Window initialisation and setup
 root = tk.Tk()
 root.title("Watermark Your Images!")
 root.geometry("800x800")
 # root.resizable(False, False)
+
+# Variables
+input_text = tk.StringVar(root)
+option_var = tk.StringVar(root)
+
+
+# TODO: Write functionality for displaying selected image [Finished]
+# TODO: Write functionality to select the way how to watermark image
+def choose_option():
+    radio_btn_val = option_var.get()
+    if radio_btn_val == 'txt':
+        watermark_txt.configure(state='normal')
+        watermark_txt.update()
+    else:
+        watermark_txt.configure(state='disabled')
+        watermark_txt.update()
+
+
+# TODO: Write functionality to add watermark
+# TODO: Write functionality to display watermarked image
+# TODO: Write functionality to download watermarked image
 
 img_container = []  # List to hold image references
 # Elements Initialisation
@@ -25,9 +39,10 @@ label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
 browse_btn = ttk.Button(root, text="Browse Folder", command=lambda: browse_files(file_explorer, canvas, img_container))
 # Radio Buttons
-radio_btn1 = ttk.Radiobutton(root, text="Using text", value='txt')
-radio_btn2 = ttk.Radiobutton(root, text="Using image", value='img')
-
+radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
+radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
+# Entries
+watermark_txt = ttk.Entry(root, textvariable=input_text, state='disabled')
 
 # Setting up elements on grid
 file_explorer.pack()
@@ -36,6 +51,8 @@ browse_btn.pack()
 label1.pack()
 radio_btn2.pack()
 radio_btn1.pack()
+watermark_txt.pack()
+
 
 # Canvas setup
 canvas = tk.Canvas(root, height=600, width=600)
