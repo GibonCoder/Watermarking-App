@@ -2,15 +2,16 @@ from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 
 
-def browse_files(exp_lbl, canvas, container):
+def browse_files(container, **kwargs):
     file_path = askopenfilename(
         initialdir='/',
         title="Select File",
         filetypes=[('Image Files', '*.jpg *.jpeg *.png')]
     )
     if not len(file_path) == 0:
-        exp_lbl.configure(text=f"File Opened: {file_path}")
-        display_image(file_path, canvas, container)
+        if kwargs['label'] and kwargs['canvas']:
+            kwargs['label'].configure(text=f"File Opened: {file_path}")
+            display_image(file_path, kwargs['canvas'], container)
 
 
 def display_image(path, canvas, container):
