@@ -9,7 +9,7 @@ def browse_files(container, **kwargs):
         filetypes=[('Image Files', '*.jpg *.jpeg *.png')]
     )
     if not len(file_path) == 0:
-        if kwargs['label'] and kwargs['canvas']:
+        if 'label' in kwargs and 'canvas' in kwargs:
             kwargs['label'].configure(text=f"File Opened: {file_path}")
             display_image(file_path, kwargs['canvas'], container)
 
