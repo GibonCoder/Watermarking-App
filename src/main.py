@@ -21,9 +21,16 @@ def choose_option():
     if radio_btn_val == 'txt':
         watermark_txt.configure(state='normal')
         watermark_txt.update()
+
+        browse_watermarks_btn.configure(state='disabled')
+        browse_watermarks_btn.update()
     else:
         watermark_txt.configure(state='disabled')
         watermark_txt.update()
+
+        browse_watermarks_btn.configure(state='normal')
+        browse_watermarks_btn.update()
+
 
 
 # TODO: Write functionality to add watermark
