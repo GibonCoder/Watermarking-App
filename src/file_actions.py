@@ -22,3 +22,13 @@ def display_image(path, canvas, container):
     canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
     container.clear()
     container.append(photo)
+
+
+# TODO: Think about required arguments, and about setting kwargs
+def add_watermark(method, img_path, watermark):
+    if method == 'txt':
+        pass
+        # TODO: Write functionality to add text watermark
+    elif method == 'img':
+        pass
+        # TODO: Write functionality to add image watermark
