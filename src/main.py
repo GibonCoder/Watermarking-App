@@ -15,7 +15,7 @@ option_var = tk.StringVar(root)
 
 
 # TODO: Write functionality for displaying selected image [Finished]
-# TODO: Write functionality to select the way how to watermark image
+# TODO: Write functionality to select the way how to watermark image [Finished]
 def choose_option():
     radio_btn_val = option_var.get()
     if radio_btn_val == 'txt':
@@ -31,11 +31,10 @@ def choose_option():
         browse_watermarks_btn.configure(state='normal')
         browse_watermarks_btn.update()
 
-
-
 # TODO: Write functionality to add watermark
 # TODO: Write functionality to display watermarked image
 # TODO: Write functionality to download watermarked image
+
 
 img_container = []  # List to hold image references
 watermark_container = []  # List to hold watermark reference
@@ -47,6 +46,7 @@ label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
 browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(img_container, canvas=canvas, label=file_explorer))
 browse_watermarks_btn = ttk.Button(root, text="Browse watermarks", command=lambda: browse_files(watermark_container))
+add_watermark_btn = ttk.Button(root, text="Add your watermark")
 # Radio Buttons
 radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
 radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
@@ -62,6 +62,7 @@ radio_btn2.pack()
 browse_watermarks_btn.pack()
 radio_btn1.pack()
 watermark_txt.pack()
+add_watermark_btn.pack()
 
 
 # Canvas setup
