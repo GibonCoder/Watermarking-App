@@ -25,15 +25,23 @@ def display_image(path, canvas, container):
 
 
 # TODO: Think about required arguments, and about setting kwargs
-def add_watermark(method, img_path, watermark_img, watermark_txt):
-    img = Image.open(img_path)
+def add_watermark(method, saved_img, watermark, watermark_txt):
+    watermarked = saved_img.copy()
+    font = ImageFont.load_default(40)
+    font_col = (128, 128, 128)
     if method == 'txt':
-        text_pos = (100, 100)
-        font = ImageFont.load_default()
-        draw = ImageDraw.Draw(img)
-        draw.text(text_pos, watermark_txt, font=font, fill=(255, 255, 255))
+        draw = ImageDraw.Draw(watermarked)
+        # Calculate text size
+        ascent, descent = font.getmetrics()
 
-        img.save('watermarked-image.jpg')
+        text_w = font.getmask(watermark_txt).getbox()[2]
+        text_h = font.getmask(watermark_txt).getbox()[3] + descent
+        # Calculate text position
+        x = (watermarked.width() - text_w) / 2
+        y = (watermarked.height() - text_h) / 2
+
+        draw.text((x, y), watermark_txt, font=font, fill=font_col)
+        watermarked.save()
         # TODO: Write functionality to add text watermark
     elif method == 'img':
         pass
