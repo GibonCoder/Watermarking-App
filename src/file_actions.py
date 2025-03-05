@@ -1,5 +1,5 @@
 from tkinter.filedialog import askopenfilename
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageDraw, ImageFont
 
 
 def browse_files(container, **kwargs):
@@ -25,9 +25,15 @@ def display_image(path, canvas, container):
 
 
 # TODO: Think about required arguments, and about setting kwargs
-def add_watermark(method, img_path, watermark):
+def add_watermark(method, img_path, watermark_img, watermark_txt):
+    img = Image.open(img_path)
     if method == 'txt':
-        pass
+        text_pos = (100, 100)
+        font = ImageFont.load_default()
+        draw = ImageDraw.Draw(img)
+        draw.text(text_pos, watermark_txt, font=font, fill=(255, 255, 255))
+
+        img.save('watermarked-image.jpg')
         # TODO: Write functionality to add text watermark
     elif method == 'img':
         pass
