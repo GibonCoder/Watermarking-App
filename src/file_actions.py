@@ -1,5 +1,6 @@
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from PIL import Image, ImageTk, ImageDraw, ImageFont
+import os
 
 
 def browse_files(img_container, paths_container, **kwargs):
@@ -29,20 +30,15 @@ def display_image(photo, canvas, img_container, paths_cont):
 # TODO: Replace objects with paths to work w/ them within the func
 def add_watermark(method, img_path, watermark, watermark_txt):
     watermarked = Image.open(img_path)
-    font = ImageFont.load_default(40)
-    font_col = (128, 128, 128)
     if method == 'txt':
+        tex_position = (watermarked.width/2, watermarked.height/2)
+        font = ImageFont.truetype("arial.ttf", 100)
+        f_color = (255, 255, 255)
         draw = ImageDraw.Draw(watermarked)
-        # Calculate text size
-        ascent, descent = font.getmetrics()
-
-        text_w = font.getmask(watermark_txt).getbox()[2]
-        text_h = font.getmask(watermark_txt).getbox()[3] + descent
-        # Calculate text position
-        x = (watermarked.width - text_w) / 2
-        y = (watermarked.height - text_h) / 2
-
-        draw.text((x, y), watermark_txt, font=font, fill=font_col)
+        draw.text(tex_position, watermark_txt, font=font, fill=f_color)
+        rgb_watermarked = watermarked.convert("RGB")
+        save_image(rgb_watermarked)
+        # watermarked.save("watermarked_image.jpg")
 
         # TODO: Write functionality to add text watermark
     elif method == 'img':
@@ -51,6 +47,13 @@ def add_watermark(method, img_path, watermark, watermark_txt):
 
 
 def save_image(watermarked_img):
-    save_path = asksaveasfilename(defaultextension='.jpg', filetypes=[("JPEG Image", '*.jpg'), ("PNG Image", '*.png')])
-    if save_path:
-        watermarked_img.save(save_path)
+    save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "watermarked_img.jpg")
+
+    save_dir = os.path.dirname(save_path)
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+
+    watermarked_img.save(save_path, "JPEG")
+    print(f"Image saved to: {save_path}")
+
+
