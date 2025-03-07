@@ -19,8 +19,6 @@ def display_image(photo, canvas, img_container, paths_cont):
     paths_cont.append(photo)
     img = Image.open(photo)
     photo = ImageTk.PhotoImage(img)
-    photo_width = photo.width()
-    photo_height = photo.height()
     canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
     img_container.clear()
     img_container.append(photo)
