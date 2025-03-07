@@ -36,7 +36,6 @@ def add_watermark(method, img_path, watermark, watermark_txt):
         draw.text(tex_position, watermark_txt, font=font, fill=f_color)
         rgb_watermarked = watermarked.convert("RGB")
         save_image(rgb_watermarked)
-        # watermarked.save("watermarked_image.jpg")
 
         # TODO: Write functionality to add text watermark
     elif method == 'img':

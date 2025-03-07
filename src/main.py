@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from PIL import Image, ImageTk
 from file_actions import browse_files, add_watermark
 
 # Window initialisation and setup
