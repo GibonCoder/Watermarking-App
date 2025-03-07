@@ -2,7 +2,7 @@ from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 
 
-def browse_files(container, **kwargs):
+def browse_files(img_container, paths_container, **kwargs):
     file_path = askopenfilename(
         initialdir='/',
         title="Select File",
@@ -11,22 +11,23 @@ def browse_files(container, **kwargs):
     if not len(file_path) == 0:
         if 'label' in kwargs and 'canvas' in kwargs:
             kwargs['label'].configure(text=f"File Opened: {file_path}")
-            display_image(file_path, kwargs['canvas'], container)
+            display_image(file_path, kwargs['canvas'], img_container, paths_container)
 
 
-def display_image(path, canvas, container):
-    img = Image.open(path)
+def display_image(photo, canvas, img_container, paths_cont):
+    paths_cont.append(photo)
+    img = Image.open(photo)
     photo = ImageTk.PhotoImage(img)
     photo_width = photo.width()
     photo_height = photo.height()
     canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
-    container.clear()
-    container.append(photo)
+    img_container.clear()
+    img_container.append(photo)
 
 
 # TODO: Think about required arguments, and about setting kwargs
-def add_watermark(method, saved_img, watermark, watermark_txt):
-    watermarked = saved_img.copy()
+# TODO: Replace objects with paths to work w/ them within the func
+def add_watermark(method, img_path, watermark, watermark_txt):
     font = ImageFont.load_default(40)
     font_col = (128, 128, 128)
     if method == 'txt':

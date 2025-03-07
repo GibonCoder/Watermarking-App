@@ -38,6 +38,7 @@ def choose_option():
 
 
 img_container = []  # List to hold image references
+paths_container = []
 watermark_container = []  # List to hold watermark reference
 # Elements Initialisation
 # Labels
@@ -46,8 +47,8 @@ label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 # Buttons
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
 browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(img_container, canvas=canvas, label=file_explorer))
-browse_watermarks_btn = ttk.Button(root, text="Browse watermarks", command=lambda: browse_files(watermark_container), state='disabled')
-add_watermark_btn = ttk.Button(root, text="Add your watermark", command=lambda : add_watermark(option_var, img_container[0], watermark_container[0], input_text))
+browse_watermarks_btn = ttk.Button(root, text="Browse watermarks", command=lambda: browse_files(watermark_container, paths_container), state='disabled')
+add_watermark_btn = ttk.Button(root, text="Add your watermark", command=lambda : add_watermark(option_var, paths_container[-1], watermark_container[-1], input_text))
 # Radio Buttons
 radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
 radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
