@@ -27,17 +27,19 @@ def display_image(photo, canvas, img_container, paths_cont):
 # TODO: Think about required arguments, and about setting kwargs
 # TODO: Replace objects with paths to work w/ them within the func
 def add_watermark(method, img_path, watermark, watermark_txt):
-    watermarked = Image.open(img_path)
+    image = Image.open(img_path)
+    watermarked = Image.new('RGB', (800, 600), (0, 0, 0, 0))
     if method == 'txt':
         font = ImageFont.truetype("arial.ttf", 30)
         f_color = (128, 128, 128, 128)
         draw = ImageDraw.Draw(watermarked)
-        for x in range(10, watermarked.width-10, 150):
-            for y in range(10, watermarked.height-10, 150):
+        for x in range(10, image.width-10, 150):
+            for y in range(10, image.height-10, 150):
                 pos = (x, y)
                 draw.text(pos, watermark_txt, font=font, fill=f_color)
-        rgb_watermarked = watermarked.convert("RGB")
-        save_image(rgb_watermarked)
+        watermarked = watermarked.rotate(30, expand=1)
+        image.paste(watermarked, (0, 0))
+        save_image(image)
 
         # TODO: Write functionality to add text watermark
     elif method == 'img':
