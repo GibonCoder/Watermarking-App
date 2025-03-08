@@ -30,9 +30,8 @@ def add_watermark(method, img_path, watermark, watermark_txt):
     watermarked = Image.open(img_path)
     if method == 'txt':
         font = ImageFont.truetype("arial.ttf", 30)
-        f_color = (255, 255, 255)
+        f_color = (128, 128, 128, 128)
         draw = ImageDraw.Draw(watermarked)
-
         for x in range(10, watermarked.width-10, 150):
             for y in range(10, watermarked.height-10, 150):
                 pos = (x, y)
