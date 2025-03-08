@@ -28,7 +28,7 @@ def display_image(photo, canvas, img_container, paths_cont):
 # TODO: Replace objects with paths to work w/ them within the func
 def add_watermark(method, img_path, watermark, watermark_txt):
     image = Image.open(img_path)
-    watermarked = Image.new('RGB', (800, 600), (0, 0, 0, 0))
+    watermarked = Image.new('RGB', (image.width, image.height), (0, 0, 0, 0))
     if method == 'txt':
         font = ImageFont.truetype("arial.ttf", 30)
         f_color = (128, 128, 128, 128)
