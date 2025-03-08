@@ -26,7 +26,6 @@ def display_image(photo_path, canvas, img_container, paths_cont):
 
 
 # TODO: Think about required arguments, and about setting kwargs
-# TODO: Replace objects with paths to work w/ them within the func
 def add_watermark(method, img_path, watermark_path, watermark_txt):
     image = Image.open(img_path)
     if method == 'txt':
@@ -40,10 +39,17 @@ def add_watermark(method, img_path, watermark_path, watermark_txt):
         rgb_watermarked = image.convert("RGB")
         save_image(rgb_watermarked)
 
-        # TODO: Write functionality to add text watermark
     elif method == 'img':
-        pass
-        # TODO: Write functionality to add image watermark
+        watermark = Image.open(watermark_path)
+        target_width = 200
+        # adjustments
+        aspect_ratio = float(target_width) / watermark.width
+        target_height = int(watermark.height * aspect_ratio)
+        watermark = watermark.resize((target_width, target_height), Image.Resampling.LANCZOS)
+        pos = (int(image.width/2), int(image.height/2))
+        image.paste(watermark, pos, watermark)
+        # TODO: Need fix
+        save_image(image)
 
 
 def save_image(watermarked_img):
