@@ -48,6 +48,8 @@ def add_watermark(method, img_path, watermark, watermark_txt):
 
 
 def save_image(watermarked_img):
+    watermarked_img = watermarked_img.convert("RGB")
+
     save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "watermarked_img.jpg")
 
     save_dir = os.path.dirname(save_path)
