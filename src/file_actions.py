@@ -15,9 +15,10 @@ def browse_files(img_container, paths_container, **kwargs):
             display_image(file_path, kwargs['canvas'], img_container, paths_container)
 
 
-def display_image(photo, canvas, img_container, paths_cont):
-    paths_cont.append(photo)
-    img = Image.open(photo)
+def display_image(photo_path, canvas, img_container, paths_cont):
+    paths_cont.clear()
+    paths_cont.append(photo_path)
+    img = Image.open(photo_path)
     photo = ImageTk.PhotoImage(img)
     canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
     img_container.clear()
@@ -26,7 +27,7 @@ def display_image(photo, canvas, img_container, paths_cont):
 
 # TODO: Think about required arguments, and about setting kwargs
 # TODO: Replace objects with paths to work w/ them within the func
-def add_watermark(method, img_path, watermark, watermark_txt):
+def add_watermark(method, img_path, watermark_path, watermark_txt):
     image = Image.open(img_path)
     if method == 'txt':
         font = ImageFont.truetype("arial.ttf", 30)
