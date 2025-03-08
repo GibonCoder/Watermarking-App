@@ -1,7 +1,6 @@
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from PIL import Image, ImageTk, ImageDraw, ImageFont
 import os
-import math
 
 
 def browse_files(img_container, paths_container, **kwargs):
@@ -30,14 +29,8 @@ def display_image(photo, canvas, img_container, paths_cont):
 def add_watermark(method, img_path, watermark, watermark_txt):
     watermarked = Image.open(img_path)
     if method == 'txt':
-        watermark_length = len(watermark_txt)
-        # load font and tweak ratio
-        font_ratio = 1.5
-        diagonal_percentage = .5
-        diagonal_length = int(math.sqrt(watermarked.width**2) + (watermarked.height**2))
-        diagonal_to_use = diagonal_length * diagonal_percentage
-        font_size = int(diagonal_to_use / (watermark_length / font_ratio))
-        font = ImageFont.truetype("arial.ttf", font_size)
+        tex_position = (watermarked.width/2, watermarked.height/2)
+        font = ImageFont.truetype("arial.ttf", 30)
         f_color = (255, 255, 255)
         draw = ImageDraw.Draw(watermarked)
         for x in range(10, watermarked.width-10, 150):
