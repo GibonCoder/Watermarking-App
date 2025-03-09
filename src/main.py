@@ -20,11 +20,16 @@ def choose_option():
         watermark_txt.update()
         watermark_container.append(0)
 
+        paths_container.append(None)
+
         browse_watermarks_btn.configure(state='disabled')
         browse_watermarks_btn.update()
     else:
         watermark_txt.configure(state='disabled')
         watermark_txt.update()
+
+        if None in paths_container:
+            paths_container.remove(None)
 
         browse_watermarks_btn.configure(state='normal')
         browse_watermarks_btn.update()
