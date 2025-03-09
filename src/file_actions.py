@@ -9,16 +9,16 @@ def browse_files(img_container, paths_container, **kwargs):
         title="Select File",
         filetypes=[('Image Files', '*.jpg *.jpeg *.png')]
     )
+
+    paths_container.append(file_path)
+
     if not len(file_path) == 0:
         if 'label' in kwargs and 'canvas' in kwargs:
             kwargs['label'].configure(text=f"File Opened: {file_path}")
-            display_image(file_path, kwargs['canvas'], img_container, paths_container)
-        else:
-            paths_container.append(file_path)
+            display_image(file_path, kwargs['canvas'], img_container)
 
 
-def display_image(photo_path, canvas, img_container, paths_cont):
-    paths_cont.append(photo_path)
+def display_image(photo_path, canvas, img_container):
     img = Image.open(photo_path)
     photo = ImageTk.PhotoImage(img)
     canvas.create_image((canvas.winfo_width()/2), (canvas.winfo_height()/2), image=photo)
