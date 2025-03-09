@@ -48,7 +48,7 @@ def add_watermark(method, img_path, watermark_path, watermark_txt):
         target_height = int(watermark.height * aspect_ratio)
         watermark = watermark.resize((target_width, target_height), Image.Resampling.LANCZOS)
         pos = (int(image.width/2), int(image.height/2))
-        image.paste(watermark, pos, watermark)
+        image.paste(watermark, pos)
         # TODO: Need fix
         save_image(image)
 
@@ -59,6 +59,9 @@ def save_image(watermarked_img):
     save_dir = os.path.dirname(save_path)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
+
+    if watermarked_img.mode != 'RGB':
+        watermarked_img = watermarked_img.convert('RGB')
 
     watermarked_img.save(save_path, "JPEG")
     print(f"Image saved to: {save_path}")
