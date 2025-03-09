@@ -16,7 +16,6 @@ def browse_files(img_container, paths_container, **kwargs):
 
 
 def display_image(photo_path, canvas, img_container, paths_cont):
-    paths_cont.clear()
     paths_cont.append(photo_path)
     img = Image.open(photo_path)
     photo = ImageTk.PhotoImage(img)
