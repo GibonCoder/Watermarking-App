@@ -13,8 +13,6 @@ input_text = tk.StringVar(root)
 option_var = tk.StringVar(root)
 
 
-# TODO: Write functionality for displaying selected image [Finished]
-# TODO: Write functionality to select the way how to watermark image [Finished]
 def choose_option():
     radio_btn_val = option_var.get()
     if radio_btn_val == 'txt':
@@ -47,7 +45,7 @@ label1 = ttk.Label(root, text="How do you want to watermark your photo?")
 exit_btn = ttk.Button(root, text="Quit", command=root.destroy)
 browse_files_btn = ttk.Button(root, text="Browse Files", command=lambda: browse_files(img_container, canvas=canvas, label=file_explorer, paths_container=paths_container))
 browse_watermarks_btn = ttk.Button(root, text="Browse watermarks", command=lambda: browse_files(watermark_container, paths_container), state='disabled')
-add_watermark_btn = ttk.Button(root, text="Add your watermark", command=lambda: add_watermark(option_var.get(), paths_container[-1], watermark_container[-1], input_text.get()))
+add_watermark_btn = ttk.Button(root, text="Add your watermark", command=lambda: add_watermark(option_var.get(), paths_container[0], paths_container[1], input_text.get()))
 # Radio Buttons
 radio_btn1 = ttk.Radiobutton(root, text="Using text", variable=option_var, value='txt', command=choose_option)
 radio_btn2 = ttk.Radiobutton(root, text="Using image", variable=option_var, value='img', command=choose_option)
