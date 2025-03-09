@@ -10,12 +10,13 @@ def browse_files(img_container, paths_container, **kwargs):
         filetypes=[('Image Files', '*.jpg *.jpeg *.png')]
     )
 
-    paths_container.append(file_path)
-
     if not len(file_path) == 0:
         if 'label' in kwargs and 'canvas' in kwargs:
             kwargs['label'].configure(text=f"File Opened: {file_path}")
             display_image(file_path, kwargs['canvas'], img_container)
+            paths_container.clear()
+    paths_container.append(file_path)
+
 
 
 def display_image(photo_path, canvas, img_container):
